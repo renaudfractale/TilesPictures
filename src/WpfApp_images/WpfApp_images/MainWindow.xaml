@@ -1,0 +1,130 @@
+﻿<Controls:MetroWindow x:Class="MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp_images"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center">Selection du repertoire</TextBlock>
+        <Button Name="Button_GetDirPictures" Click="Button_GetDirPictures_Click">Get Dir Pictures</Button>
+        <ComboBox Name="ComboBox_ListSizes" ></ComboBox>
+        <StackPanel Name="StackPanel_Options">
+            <TextBlock HorizontalAlignment="Center">Nom du projet</TextBlock>
+        <TextBox Name="TextBox_Projet" Controls:TextBoxHelper.WatermarkAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center"> Parameters :</TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <RadioButton GroupName="Parameters"   Name="RadioButton_Parameters_AZ" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <RadioButton GroupName="Parameters"   Name="RadioButton_Parameters_ZA"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <RadioButton GroupName="Parameters"   Name="RadioButton_Parameters_Random"  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center"> A-->Z </TextBlock>
+            <TextBlock  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"> Z-->A </TextBlock>
+            <TextBlock  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"> Random </TextBlock>
+        </Grid>
+        <TextBlock HorizontalAlignment="Center"> Repetitions :</TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <RadioButton GroupName="Repetitions"   Name="RadioButton_Repetitions_None" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <RadioButton GroupName="Repetitions"   Name="RadioButton_Repetitions_Miroir"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <RadioButton GroupName="Repetitions"   Name="RadioButton_Repetitions_Serie"  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center"> None </TextBlock>
+            <TextBlock  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"> Miroir </TextBlock>
+            <TextBlock  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"> Serie </TextBlock>
+                <Controls:NumericUpDown Interval="1"  Name="NumericUpDown_Miroir" Minimum="1" Maximum="100" Value="1"  Grid.Column="1" Grid.Row="2"/>
+                <Controls:NumericUpDown   Interval="1" Name="NumericUpDown_Serie" Minimum="1" Maximum="100" Value="1"  Grid.Column="2" Grid.Row="2"/>
+        </Grid>
+        <TextBlock HorizontalAlignment="Center" > Alignement : </TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+                <RadioButton GroupName="Alignement"   Name="RadioButton_Alignement_H" Checked="RadioButton_Alignement_H_Checked"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="Alignement"   Name="RadioButton_Alignement_V" Checked="RadioButton_Alignement_V_Checked"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <RadioButton GroupName="Alignement"   Name="RadioButton_Alignement_D1" Checked="RadioButton_Alignement_D1_Checked" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="Alignement"   Name="RadioButton_Alignement_D2" Checked="RadioButton_Alignement_D2_Checked"  Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="Alignement"   Name="RadioButton_Alignement_C" Checked="RadioButton_Alignement_C_Checked"  Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="Alignement"   Name="RadioButton_Alignement_Rdm" Checked="RadioButton_Alignement_Rdm_Checked"  Grid.Column="5" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center"> H</TextBlock>
+            <TextBlock  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"> V</TextBlock>
+            <TextBlock  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center"> D1</TextBlock>
+            <TextBlock  Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center"> D2</TextBlock>
+            <TextBlock  Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center"> C</TextBlock>
+            <TextBlock  Grid.Column="5" Grid.Row="1" HorizontalAlignment="Center"> RDM</TextBlock>
+            
+        </Grid>
+            <TextBlock HorizontalAlignment="Center"> Transition :</TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <RadioButton GroupName="Transition"   Name="RadioButton_Transition_Sinus" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="Transition"   Name="RadioButton_Transition_Triangle"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="Transition"   Name="RadioButton_Transition_Carré"  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Sinus</TextBlock>
+                <TextBlock  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Triangle</TextBlock>
+                <TextBlock  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center">Carré</TextBlock>
+            </Grid>
+            <StackPanel Name="StackPanel_Tuile">
+            <TextBlock HorizontalAlignment="Center"> Methode de calcule tuiles :</TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <RadioButton GroupName="Tuile"   Name="RadioButton_Tuile_Carré" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="Tuile"   Name="RadioButton_Tuile_Circulaire"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <RadioButton GroupName="Tuile"   Name="RadioButton_Tuile_Combinée"  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Carré</TextBlock>
+                <TextBlock  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">Circulaire</TextBlock>
+                <TextBlock  Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center">Combinée</TextBlock>
+            </Grid>
+        </StackPanel>
+
+
+        <Button Name="Button_GenerateOnePicture" Click="Button_GenerateOnePicture_Click">Generate One Picture</Button>
+            <Button Name="Button_GenerateAllPictures" >Generate All Pictures</Button>
+        </StackPanel>
+    </StackPanel>
+</Controls:MetroWindow>
