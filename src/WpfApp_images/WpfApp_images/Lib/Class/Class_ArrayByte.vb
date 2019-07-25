@@ -25,7 +25,7 @@ Public Class Class_ArrayByte
 
     Public Shared Sub SetValue(PoseHeight As Integer, PoseWidth As Integer, value As Class_PixelRH)
         If _IsInit = False Then Exit Sub
-        Dim Pose As Integer = (_Height * PoseHeight + PoseWidth) * 7
+        Dim Pose As Integer = (_Height * PoseWidth + PoseHeight) * 7
         Dim Coef = BitConverter.GetBytes(value.Coef)
         '    SyncLock _memStream
         _memStream.Position = Pose
@@ -44,7 +44,7 @@ Public Class Class_ArrayByte
 
     Public Shared Function GetValue(PoseHeight As Integer, PoseWidth As Integer) As Class_PixelRH
         If _IsInit = False Then Return New Class_PixelRH
-        Dim Pose As Integer = (_Height * PoseHeight + PoseWidth) * 7
+        Dim Pose As Integer = (_Height * PoseWidth + PoseHeight) * 7
         Dim value As New Class_PixelRH
 
         Dim Coef As Byte() = {0, 0, 0, 0}
@@ -54,17 +54,19 @@ Public Class Class_ArrayByte
         If CInt(Coef.GetValue(0)) = 0 And CInt(Coef.GetValue(1)) = 0 And CInt(Coef.GetValue(2)) = 0 And CInt(Coef.GetValue(3)) = 0 Then
             value.Coef = CSng(0.0)
         End If
+        Try
+            _memStream.Position = Pose + 4
+            value.R = CByte(_memStream.ReadByte())
 
-        _memStream.Position = Pose + 4
-        value.R = CByte(_memStream.ReadByte())
+            _memStream.Position = Pose + 5
+            value.G = CByte(_memStream.ReadByte())
 
-        _memStream.Position = Pose + 5
-        value.G = CByte(_memStream.ReadByte())
+            _memStream.Position = Pose + 6
+            value.B = CByte(_memStream.ReadByte())
 
-        _memStream.Position = Pose + 6
-        value.B = CByte(_memStream.ReadByte())
+        Catch ex As Exception
 
-
+        End Try
         Return value
     End Function
 

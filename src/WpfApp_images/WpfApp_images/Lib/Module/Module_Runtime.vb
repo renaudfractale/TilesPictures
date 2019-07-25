@@ -53,16 +53,15 @@ Public Module Module_Runtime
         End If
 
         Dim nbSection = ListeFiles.Count
-        Dim PasH = CDbl(Height) / CDbl(nbSection * 1.5 + 0.5)
-        Dim PasW = CDbl(Width) / CDbl(nbSection * 1.5 + 0.5)
+        Dim PasH = CDbl(Height) / CDbl((nbSection + ((nbSection - 1) * 0.5)))
+        Dim PasW = CDbl(Width) / CDbl((nbSection + ((nbSection - 1) * 0.5)))
 
         Dim LenH = CSng(PasH)
         Dim LenW = CSng(PasW)
 
 
-
+        Class_ArrayByte.Init(Height + CInt(PasW) + 1, Width + CInt(PasW) + 1)
         If Window.RadioButton_Alignement_V.IsChecked Then
-            Class_ArrayByte.Init(Height + CInt(PasH) + 1, Width + CInt(PasW) + 1)
             Dim H1 As Integer = 0
             Dim H2 As Integer = 0
             Dim C As Integer = 0
@@ -74,37 +73,27 @@ Public Module Module_Runtime
                 C = H1 + CInt(PasH)
 
                 Dim image = New MagickImage(FileImg)
-                image.Border(CInt(PasW / 2), CInt(PasH / 2))
+                image.Border(CInt(PasW / 2.0), CInt(PasH / 2.0))
+                Dim Img = image.ToBitmap
                 For w As Integer = 0 To image.Width - 1
-
                     For h As Integer = H1 To H2
                         If h >= image.Height Then Exit For
-                        Dim Pixel = image.GetPixels(w, h)
+                        Dim Pixel = Img.GetPixel(w, h)
                         Dim Dif = CSng(Math.Abs(C - h))
                         Dim oldPixeRH = Class_ArrayByte.GetValue(h, w)
                         Dim Coef = Module_Signals.Signal(Dif, LenH, Window)
-                        oldPixeRH.Add(Coef, Pixel.ToColor)
+                        oldPixeRH.Add(Coef, Pixel)
                         Class_ArrayByte.SetValue(h, w, oldPixeRH)
                     Next
                 Next
                 NoImage += 1
+                Img.Dispose()
                 image.Dispose()
                 GC.Collect()
             Next
 
-            Dim ImgOut As New Bitmap(Height, Width)
-            For w As Integer = CInt(PasH / 2.0) To Width - CInt(PasH / 2.0) - 1
-                For h As Integer = CInt(PasH / 2.0) To Height - CInt(PasH / 2.0) - 1
-                    Dim PixeRH = Class_ArrayByte.GetValue(h, w)
-                    ImgOut.SetPixel(h - CInt(PasH / 2.0), w - CInt(PasH / 2.0), System.Drawing.Color.FromArgb(PixeRH.R, PixeRH.G, PixeRH.B))
-                Next
-            Next
-            Dim pathFile = System.IO.Path.GetTempFileName + ".jpg"
-            ImgOut.Save(pathFile)
-            ImgOut.Dispose()
-            MsgBox(pathFile)
+
         ElseIf Window.RadioButton_Alignement_H.IsChecked() Then
-            Class_ArrayByte.Init(Height + CInt(PasW) + 1, Width + CInt(PasW) + 1)
             Dim W1 As Integer = 0
             Dim W2 As Integer = 0
             Dim C As Integer = 0
@@ -114,46 +103,41 @@ Public Module Module_Runtime
                 W1 = CInt(PasW * 1.5 * CDbl(NoImage))
                 W2 = W1 + CInt(PasW * 2.0)
                 C = W1 + CInt(PasW)
-
+                'If NoImage > 0 Then
+                '    W1 += CInt(PasW / 2.0)
+                '    W2 += CInt(PasW / 2.0)
+                '    C += CInt(PasW / 2.0)
+                'End If
                 Using image = New MagickImage(FileImg)
-                    image.Border(CInt(PasW / 2), CInt(PasH / 2))
+                    image.Border(CInt(PasW / 2.0), CInt(PasH / 2.0))
+                    Dim Img = image.ToBitmap
                     For h As Integer = 0 To image.Height - 1
                         For w As Integer = W1 To W2
                             If w >= image.Width Then Exit For
-                            Dim Pixel = image.GetPixels(w, h)
+                            Dim Pixel = Img.GetPixel(w, h)
                             Dim Dif = CSng(Math.Abs(C - w))
                             Dim oldPixeRH = Class_ArrayByte.GetValue(h, w)
                             Dim Coef = Module_Signals.Signal(Dif, LenW, Window)
-                            oldPixeRH.Add(Coef, Pixel.ToColor)
+                            oldPixeRH.Add(Coef, Pixel)
                             Class_ArrayByte.SetValue(h, w, oldPixeRH)
                         Next
                     Next
+                    Img.Dispose()
+                    image.Dispose()
                     NoImage += 1
                 End Using
                 GC.Collect()
             Next
 
-            Dim ImgOut As New Bitmap(Height, Width)
-            For w As Integer = CInt(PasW / 2.0) To Width - CInt(PasW / 2.0) - 1
-                For h As Integer = CInt(PasW / 2.0) To Height - CInt(PasW / 2.0) - 1
-                    Dim PixeRH = Class_ArrayByte.GetValue(h, w)
-                    ImgOut.SetPixel(h - CInt(PasW / 2.0), w - CInt(PasW / 2.0), System.Drawing.Color.FromArgb(PixeRH.R, PixeRH.G, PixeRH.B))
-                Next
-            Next
-            Dim pathFile = System.IO.Path.GetTempFileName + ".jpg"
-            ImgOut.Save(pathFile)
-            ImgOut.Dispose()
-            MsgBox(pathFile)
 
         ElseIf Window.RadioButton_Alignement_C.IsChecked() Then
-            Class_ArrayByte.Init(Height + CInt(PasW * 2.0) + 1, Width + CInt(PasW * 2.0) + 1)
             Dim Diagonale = Math.Sqrt(PasW * PasW + PasH * PasH) * 0.75
             For X As Integer = 0 To ListeFiles.Count - 1
                 For Y As Integer = 0 To ListeFiles.Count - 1
                     Dim PoseX = CDbl(X) * PasW * 1.5
                     Dim PoseY = CDbl(Y) * PasH * 1.5
-                    Dim PoseXC = CDbl(X) * PasW * 1.5 + PasW * 1.5
-                    Dim PoseYC = CDbl(Y) * PasH * 1.5 + PasH * 1.5
+                    Dim PoseXC = CDbl(X) * PasW * 1.5 + PasW * 1
+                    Dim PoseYC = CDbl(Y) * PasH * 1.5 + PasH * 1
 
 
                     Dim DeltaX = Math.Abs(CDbl(Width + CInt(PasW)) / 2.0 - PoseXC)
@@ -164,7 +148,8 @@ Public Module Module_Runtime
                     '    MsgBox("X=" + X.ToString + ",  Y=" + Y.ToString + ", NoPicture=" + NoPicture.ToString)
 
                     Using image = New MagickImage(ListeFiles.Item(NoPicture Mod (ListeFiles.Count)))
-                        image.Border(CInt(PasW), CInt(PasH))
+                        image.Border(CInt(PasW * 0.5), CInt(PasH * 0.5))
+                        Dim Img = image.ToBitmap
                         Dim W1 As Integer = CInt(PoseX)
                         Dim W2 As Integer = W1 + CInt(2.0 * PasW)
                         Dim CW As Integer = W1 + CInt(PasW)
@@ -177,41 +162,31 @@ Public Module Module_Runtime
                             For w As Integer = W1 To W2
                                 If w >= image.Width Then Continue For
                                 If h >= image.Height Then Continue For
-                                Dim Pixel = image.GetPixels(w, h)
+                                Dim Pixel = Img.GetPixel(w, h)
                                 Dim Coef = Module_TuileSignals.Tuiles(CH, CW, h, w, CInt(PasH), CInt(PasW), Window)
                                 Dim oldPixeRH = Class_ArrayByte.GetValue(h, w)
-                                oldPixeRH.Add(coef, Pixel.ToColor)
+                                oldPixeRH.Add(Coef, Pixel)
                                 Class_ArrayByte.SetValue(h, w, oldPixeRH)
                             Next
                         Next
-
+                        Img.Dispose()
+                        image.Dispose()
                     End Using
                     GC.Collect()
                 Next
             Next
 
 
-            Dim ImgOut As New Bitmap(Height, Width)
-            For w As Integer = CInt(PasW) To Width - CInt(PasW) - 1
-                For h As Integer = CInt(PasW) To Height - CInt(PasW) - 1
-                    Dim PixeRH = Class_ArrayByte.GetValue(h, w)
-                    ImgOut.SetPixel(h - CInt(PasW), w - CInt(PasW), System.Drawing.Color.FromArgb(PixeRH.R, PixeRH.G, PixeRH.B))
-                Next
-            Next
-            Dim pathFile = System.IO.Path.GetTempFileName + ".jpg"
-            ImgOut.Save(pathFile)
-            ImgOut.Dispose()
-            MsgBox(pathFile)
 
         ElseIf Window.RadioButton_Alignement_D1.IsChecked() Then
-            Class_ArrayByte.Init(Height + CInt(PasW * 2.0) + 1, Width + CInt(PasW * 2.0) + 1)
+
             Dim Diagonale = Math.Sqrt(PasW * PasW + PasH * PasH) * 0.75 * 2
             For X As Integer = 0 To ListeFiles.Count - 1
                 For Y As Integer = 0 To ListeFiles.Count - 1
                     Dim PoseX = CDbl(X) * PasW * 1.5
                     Dim PoseY = CDbl(Y) * PasH * 1.5
-                    Dim PoseXC = CDbl(X) * PasW * 1.5 + PasW * 1.5
-                    Dim PoseYC = CDbl(Y) * PasH * 1.5 + PasH * 1.5
+                    Dim PoseXC = CDbl(X) * PasW * 1.5 + PasW
+                    Dim PoseYC = CDbl(Y) * PasH * 1.5 + PasH
 
 
                     Dim DeltaX = Math.Abs(0 - PoseXC)
@@ -222,7 +197,8 @@ Public Module Module_Runtime
                     '    MsgBox("X=" + X.ToString + ",  Y=" + Y.ToString + ", NoPicture=" + NoPicture.ToString)
 
                     Using image = New MagickImage(ListeFiles.Item(NoPicture Mod (ListeFiles.Count)))
-                        image.Border(CInt(PasW), CInt(PasH))
+                        image.Border(CInt(PasW / 2.0), CInt(PasH / 2.0))
+                        Dim Img = image.ToBitmap
                         Dim W1 As Integer = CInt(PoseX)
                         Dim W2 As Integer = W1 + CInt(2.0 * PasW)
                         Dim CW As Integer = W1 + CInt(PasW)
@@ -235,42 +211,31 @@ Public Module Module_Runtime
                             For w As Integer = W1 To W2
                                 If w >= image.Width Then Continue For
                                 If h >= image.Height Then Continue For
-                                Dim Pixel = image.GetPixels(w, h)
+                                Dim Pixel = Img.GetPixel(w, h)
                                 Dim Coef = Module_TuileSignals.Tuiles(CH, CW, h, w, CInt(PasH), CInt(PasW), Window)
                                 Dim oldPixeRH = Class_ArrayByte.GetValue(h, w)
-                                oldPixeRH.Add(coef, Pixel.ToColor)
+                                oldPixeRH.Add(Coef, Pixel)
                                 Class_ArrayByte.SetValue(h, w, oldPixeRH)
                             Next
                         Next
-
+                        Img.Dispose()
+                        image.Dispose()
                     End Using
                     GC.Collect()
                 Next
             Next
 
 
-            Dim ImgOut As New Bitmap(Height, Width)
-            For w As Integer = CInt(PasW) To Width - CInt(PasW) - 1
-                For h As Integer = CInt(PasW) To Height - CInt(PasW) - 1
-                    Dim PixeRH = Class_ArrayByte.GetValue(h, w)
-                    ImgOut.SetPixel(h - CInt(PasW), w - CInt(PasW), System.Drawing.Color.FromArgb(PixeRH.R, PixeRH.G, PixeRH.B))
-                Next
-            Next
-            Dim pathFile = System.IO.Path.GetTempFileName + ".jpg"
-            ImgOut.Save(pathFile)
-            ImgOut.Dispose()
-            MsgBox(pathFile)
-
 
         ElseIf Window.RadioButton_Alignement_D2.IsChecked() Then
-            Class_ArrayByte.Init(Height + CInt(PasW * 2.0) + 1, Width + CInt(PasW * 2.0) + 1)
+
             Dim Diagonale = Math.Sqrt(PasW * PasW + PasH * PasH) * 0.75 * 2
             For X As Integer = 0 To ListeFiles.Count - 1
                 For Y As Integer = 0 To ListeFiles.Count - 1
                     Dim PoseX = CDbl(X) * PasW * 1.5
                     Dim PoseY = CDbl(Y) * PasH * 1.5
-                    Dim PoseXC = CDbl(X) * PasW * 1.5 + PasW * 1.5
-                    Dim PoseYC = CDbl(Y) * PasH * 1.5 + PasH * 1.5
+                    Dim PoseXC = CDbl(X) * PasW * 1.5 + PasW
+                    Dim PoseYC = CDbl(Y) * PasH * 1.5 + PasH
 
 
                     Dim DeltaX = Math.Abs((ListeFiles.Count - 1) * PasW * 1.5 + PasW * 1.5 - PoseXC)
@@ -281,7 +246,9 @@ Public Module Module_Runtime
                     '    MsgBox("X=" + X.ToString + ",  Y=" + Y.ToString + ", NoPicture=" + NoPicture.ToString)
 
                     Using image = New MagickImage(ListeFiles.Item(NoPicture Mod (ListeFiles.Count)))
-                        image.Border(CInt(PasW), CInt(PasH))
+                        image.Border(CInt(PasW * 0.5), CInt(PasH * 0.5))
+                        Dim Img = image.ToBitmap
+
                         Dim W1 As Integer = CInt(PoseX)
                         Dim W2 As Integer = W1 + CInt(2.0 * PasW)
                         Dim CW As Integer = W1 + CInt(PasW)
@@ -294,89 +261,94 @@ Public Module Module_Runtime
                             For w As Integer = W1 To W2
                                 If w >= image.Width Then Continue For
                                 If h >= image.Height Then Continue For
-                                Dim Pixel = image.GetPixels(w, h)
+                                Dim Pixel = Img.GetPixel(w, h)
                                 Dim Coef = Module_TuileSignals.Tuiles(CH, CW, h, w, CInt(PasH), CInt(PasW), Window)
                                 Dim oldPixeRH = Class_ArrayByte.GetValue(h, w)
-                                oldPixeRH.Add(coef, Pixel.ToColor)
+                                oldPixeRH.Add(Coef, Pixel)
                                 Class_ArrayByte.SetValue(h, w, oldPixeRH)
                             Next
                         Next
-
+                        Img.Dispose()
+                        image.Dispose()
                     End Using
                     GC.Collect()
                 Next
             Next
 
-
-            Dim ImgOut As New Bitmap(Height, Width)
-            For w As Integer = CInt(PasW) To Width - CInt(PasW) - 1
-                For h As Integer = CInt(PasW) To Height - CInt(PasW) - 1
-                    Dim PixeRH = Class_ArrayByte.GetValue(h, w)
-                    ImgOut.SetPixel(h - CInt(PasW), w - CInt(PasW), System.Drawing.Color.FromArgb(PixeRH.R, PixeRH.G, PixeRH.B))
-                Next
-            Next
-            Dim pathFile = System.IO.Path.GetTempFileName + ".jpg"
-            ImgOut.Save(pathFile)
-            ImgOut.Dispose()
-            MsgBox(pathFile)
-
         ElseIf Window.RadioButton_Alignement_Rdm.IsChecked() Then
-            Class_ArrayByte.Init(Height + CInt(PasW * 2.0) + 1, Width + CInt(PasW * 2.0) + 1)
             Dim random As New Random()
+            Dim Liste As New List(Of String)
             Dim Diagonale = Math.Sqrt(PasW * PasW + PasH * PasH) * 0.75 * 2
+
+            If Liste.Count = 0 Then
+                For i = 0 To ListeFiles.Count - 1
+                    For Each FilePic In ListeFiles
+                        Liste.Add(FilePic)
+                    Next
+                Next
+            End If
+
             For X As Integer = 0 To ListeFiles.Count - 1
                 For Y As Integer = 0 To ListeFiles.Count - 1
                     Dim PoseX = CDbl(X) * PasW * 1.5
                     Dim PoseY = CDbl(Y) * PasH * 1.5
 
-                    Dim NoPicture = random.Next(0, ListeFiles.Count - 1)
+
+
+                    Dim NoPicture = random.Next(0, Liste.Count - 1)
 
                     '    MsgBox("X=" + X.ToString + ",  Y=" + Y.ToString + ", NoPicture=" + NoPicture.ToString)
+                    Dim W1 As Integer = CInt(PoseX)
+                    Dim W2 As Integer = W1 + CInt(2.0 * PasW)
+                    Dim CW As Integer = W1 + CInt(PasW)
 
-                    Using image = New MagickImage(ListeFiles.Item(NoPicture Mod (ListeFiles.Count)))
-                        image.Border(CInt(PasW), CInt(PasH))
-                        Dim W1 As Integer = CInt(PoseX)
-                        Dim W2 As Integer = W1 + CInt(2.0 * PasW)
-                        Dim CW As Integer = W1 + CInt(PasW)
+                    Dim H1 As Integer = CInt(PoseY)
+                    Dim H2 As Integer = H1 + CInt(2.0 * PasH)
+                    Dim CH As Integer = H1 + CInt(PasH)
 
-                        Dim H1 As Integer = CInt(PoseY)
-                        Dim H2 As Integer = H1 + CInt(2.0 * PasH)
-                        Dim CH As Integer = H1 + CInt(PasH)
 
+                    Dim Coef As Single
+                    Dim oldPixeRH As Class_PixelRH
+
+                    Using image = New MagickImage(Liste.Item(NoPicture))
+                        image.Border(CInt(PasW * 0.5), CInt(PasH * 0.5))
+                        Dim Img = image.ToBitmap
                         For h As Integer = H1 To H2
                             For w As Integer = W1 To W2
                                 If w >= image.Width Then Continue For
                                 If h >= image.Height Then Continue For
-                                Dim Pixel = image.GetPixels(w, h)
-                                Dim Coef = Module_TuileSignals.Tuiles(CH, CW, h, w, CInt(PasH), CInt(PasW), Window)
-                                Dim oldPixeRH = Class_ArrayByte.GetValue(h, w)
-                                oldPixeRH.Add(coef, Pixel.ToColor)
+                                Dim Pixel = Img.GetPixel(w, h)
+                                Coef = Module_TuileSignals.Tuiles(CH, CW, h, w, CInt(PasH), CInt(PasW), Window)
+                                oldPixeRH = Class_ArrayByte.GetValue(h, w)
+                                oldPixeRH.Add(Coef, Pixel)
                                 Class_ArrayByte.SetValue(h, w, oldPixeRH)
+
                             Next
                         Next
-
+                        Img.Dispose()
+                        image.Dispose()
                     End Using
                     GC.Collect()
+                    GC.WaitForPendingFinalizers()
+                    GC.Collect()
+                    Liste.RemoveAt(NoPicture)
+
                 Next
             Next
-
-
-            Dim ImgOut As New Bitmap(Height, Width)
-            For w As Integer = CInt(PasW) To Width - CInt(PasW) - 1
-                For h As Integer = CInt(PasW) To Height - CInt(PasW) - 1
-                    Dim PixeRH = Class_ArrayByte.GetValue(h, w)
-                    ImgOut.SetPixel(h - CInt(PasW), w - CInt(PasW), System.Drawing.Color.FromArgb(PixeRH.R, PixeRH.G, PixeRH.B))
-                Next
-            Next
-            Dim pathFile = System.IO.Path.GetTempFileName + ".jpg"
-            ImgOut.Save(pathFile)
-            ImgOut.Dispose()
-            MsgBox(pathFile)
-
-
 
         End If
 
+        Dim ImgOut As New Bitmap(Width, Height)
+        For w As Integer = CInt(PasW * 0.5) To (Width + CInt(PasW * 0.5) - 1)
+            For h As Integer = CInt(PasH * 0.5) To (Height + CInt(PasH * 0.5) - 1)
+                Dim PixeRH = Class_ArrayByte.GetValue(h, w)
+                ImgOut.SetPixel(w - CInt(PasW * 0.5), h - CInt(PasH * 0.5), System.Drawing.Color.FromArgb(PixeRH.R, PixeRH.G, PixeRH.B))
+            Next
+        Next
+        Dim pathFile = System.IO.Path.GetTempFileName + ".jpg"
+        ImgOut.Save(pathFile)
+        ImgOut.Dispose()
+        MsgBox(pathFile)
         Class_ArrayByte.ClearMemory()
         GC.Collect()
 
