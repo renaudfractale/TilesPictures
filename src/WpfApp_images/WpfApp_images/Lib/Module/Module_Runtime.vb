@@ -189,8 +189,8 @@ Public Module Module_Runtime
                     Dim PoseYC = CDbl(Y) * PasH * 1.5 + PasH
 
 
-                    Dim DeltaX = Math.Abs(0 - PoseXC)
-                    Dim DeltaY = Math.Abs(0 - PoseYC)
+                    Dim DeltaX = Math.Abs(PasW - PoseXC)
+                    Dim DeltaY = Math.Abs(PasH - PoseYC)
                     Dim NoPicture = CInt(Math.Round(Math.Sqrt(DeltaX * DeltaX + DeltaY * DeltaY) / Diagonale, 0))
 
 
@@ -238,8 +238,8 @@ Public Module Module_Runtime
                     Dim PoseYC = CDbl(Y) * PasH * 1.5 + PasH
 
 
-                    Dim DeltaX = Math.Abs((ListeFiles.Count - 1) * PasW * 1.5 + PasW * 1.5 - PoseXC)
-                    Dim DeltaY = Math.Abs(0 - PoseYC)
+                    Dim DeltaX = Math.Abs((ListeFiles.Count - 1) * PasW * 1.5 + PasW - PoseXC)
+                    Dim DeltaY = Math.Abs(PasH - PoseYC)
                     Dim NoPicture = CInt(Math.Round(Math.Sqrt(DeltaX * DeltaX + DeltaY * DeltaY) / Diagonale, 0))
 
 
@@ -349,6 +349,10 @@ Public Module Module_Runtime
         ImgOut.Save(pathFile)
         ImgOut.Dispose()
         MsgBox(pathFile)
+        Using image = New MagickImage(pathFile)
+            image.Write(pathFile + ".jpg", MagickFormat.Jpg)
+
+        End Using
         Class_ArrayByte.ClearMemory()
         GC.Collect()
 
