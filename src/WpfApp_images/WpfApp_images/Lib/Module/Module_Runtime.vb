@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports ImageMagick
+Imports System.IO
 
 Public Module Module_Runtime
     Public Sub Runtime(Window As MainWindow)
@@ -348,14 +349,85 @@ Public Module Module_Runtime
         Dim pathFile = System.IO.Path.GetTempFileName + ".jpg"
         ImgOut.Save(pathFile)
         ImgOut.Dispose()
-        MsgBox(pathFile)
-        Using image = New MagickImage(pathFile)
-            image.Write(pathFile + ".jpg", MagickFormat.Jpg)
 
+
+        Dim No As Integer = 0
+        Dim pathOutFile = Window.DirOut + "/OutFile_" + No.ToString + "_" + NameFileOut(Window) + ".jpg"
+
+        Do
+            pathOutFile = Window.DirOut + "/OutFile_" + No.ToString + "_" + NameFileOut(Window) + ".jpg"
+
+            If Not File.Exists(pathOutFile) Then Exit Do
+
+            No += 1
+        Loop
+        Using image = New MagickImage(pathFile)
+            image.Format = MagickFormat.Jpg
+            image.Quality = 70
+            image.Strip()
+            image.Write(pathOutFile)
         End Using
         Class_ArrayByte.ClearMemory()
+        File.Delete(pathFile)
         GC.Collect()
 
 
     End Sub
+
+
+
+
+    Private Function NameFileOut(Window As MainWindow) As String
+        Dim Out As String = ""
+        If Window.RadioButton_Parameters_AZ.IsChecked() Then
+            Out += "AZ_"
+        ElseIf Window.RadioButton_Parameters_ZA.IsChecked Then
+            Out += "ZA_"
+        ElseIf Window.RadioButton_Parameters_Random.IsChecked Then
+            Out += "rndm_"
+        End If
+
+        If Window.RadioButton_Repetitions_None.IsChecked Then
+            Out += "None_"
+        ElseIf Window.RadioButton_Repetitions_Serie.IsChecked Then
+            Out += "Serie_"
+        ElseIf Window.RadioButton_Repetitions_Miroir.IsChecked Then
+            Out += "Miroir_"
+        End If
+
+        If Window.RadioButton_Alignement_C.IsChecked Then
+            Out += "C_"
+        ElseIf Window.RadioButton_Alignement_D1.IsChecked Then
+            Out += "D1_"
+        ElseIf Window.RadioButton_Alignement_D2.IsChecked Then
+            Out += "D2_"
+        ElseIf Window.RadioButton_Alignement_Rdm.IsChecked Then
+            Out += "Rndm_"
+        ElseIf Window.RadioButton_Alignement_H.IsChecked Then
+            Out += "H_"
+        ElseIf Window.RadioButton_Alignement_V.IsChecked Then
+            Out += "V_"
+        End If
+
+        If Window.RadioButton_Transition_Carré.IsChecked Then
+            Out += "Square_"
+        ElseIf Window.RadioButton_Transition_Sinus.IsChecked Then
+            Out += "Sinus_"
+        ElseIf Window.RadioButton_Transition_Triangle.IsChecked Then
+            Out += "Tri_"
+        End If
+
+        If Window.StackPanel_Tuile.IsVisible Then
+            If Window.RadioButton_Tuile_Carré.IsChecked Then
+                Out += "Square_"
+            ElseIf Window.RadioButton_Tuile_Circulaire.IsChecked Then
+                Out += "Cir"
+            ElseIf Window.RadioButton_Tuile_Combinée.IsChecked Then
+                Out += "Comb_"
+            End If
+        Else
+            Out += "None_"
+        End If
+        Return Out
+    End Function
 End Module

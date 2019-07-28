@@ -11,12 +11,12 @@ Imports System.Windows
 
 ' Vérifiez les valeurs des attributs de l'assembly
 
-<Assembly: AssemblyTitle("WpfApp_images")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("WpfApp_images")>
+<Assembly: AssemblyTitle("TilesPictures")>
+<Assembly: AssemblyDescription("Logiciel de combinant des images")>
+<Assembly: AssemblyCompany("Les Cichés de Renaud")>
+<Assembly: AssemblyProduct("TilesPictures")>
 <Assembly: AssemblyCopyright("Copyright ©  2019")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyTrademark("Les Cichés de Renaud")>
 <Assembly: ComVisible(false)>
 
 'Pour commencer à générer des applications localisables, définissez
@@ -57,3 +57,4 @@ Imports System.Windows
 
 <Assembly: AssemblyVersion("1.0.0.0")>
 <Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: NeutralResourcesLanguage("")>

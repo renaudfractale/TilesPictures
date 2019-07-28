@@ -3,6 +3,7 @@ Imports System.IO
 Class MainWindow
     Inherits MetroWindow
     Property PathDir As String = ""
+    Property DirOut As String = ""
     Property DicoSize As New Dictionary(Of String, List(Of String))
     Public Sub New()
 
@@ -24,11 +25,23 @@ Class MainWindow
         If dialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
 
             Me.PathDir = dialog.SelectedPath
+            Dim i As Integer = 0
 
+            Do
+                Me.DirOut = Me.PathDir + "\" + "TilesPictures_" + i.ToString
+
+                If Not Directory.Exists(Me.DirOut) Then Exit Do
+
+                i += 1
+            Loop
+
+            Directory.CreateDirectory(Me.DirOut)
         Else
             Me.PathDir = ""
         End If
         Me.ListeSize()
+
+
 
     End Sub
 
@@ -101,6 +114,72 @@ Class MainWindow
 
     Private Sub RadioButton_Alignement_H_Checked(sender As Object, e As RoutedEventArgs)
         StackPanel_Tuile.Visibility = Visibility.Collapsed
+    End Sub
+
+    Private Sub Button_GenerateAllPictures_Click(sender As Object, e As RoutedEventArgs)
+        For Parmeters As Integer = 0 To 2
+            Select Case Parmeters
+                Case 0
+                    Me.RadioButton_Parameters_AZ.IsChecked = True
+                Case 1
+                    Me.RadioButton_Parameters_ZA.IsChecked = True
+                Case 2
+                    Me.RadioButton_Parameters_Random.IsChecked = True
+            End Select
+            For Rep As Integer = 0 To 2
+                Select Case Rep
+                    Case 0
+                        Me.RadioButton_Repetitions_None.IsChecked = True
+                    Case 1
+                        Me.RadioButton_Repetitions_Miroir.IsChecked = True
+                    Case 2
+                        Me.RadioButton_Repetitions_Serie.IsChecked = True
+                End Select
+
+                For Alingment As Integer = 0 To 5
+                    Select Case Alingment
+                        Case 0
+                            Me.RadioButton_Alignement_C.IsChecked = True
+                        Case 1
+                            Me.RadioButton_Alignement_D1.IsChecked = True
+                        Case 2
+                            Me.RadioButton_Alignement_D2.IsChecked = True
+                        Case 3
+                            Me.RadioButton_Alignement_Rdm.IsChecked = True
+                        Case 4
+                            Me.RadioButton_Alignement_H.IsChecked = True
+                        Case 5
+                            Me.RadioButton_Alignement_V.IsChecked = True
+                    End Select
+                    For Trasition As Integer = 0 To 2
+                        Select Case Trasition
+                            Case 0
+                                Me.RadioButton_Transition_Carré.IsChecked = True
+                            Case 1
+                                Me.RadioButton_Transition_Sinus.IsChecked = True
+                            Case 2
+                                Me.RadioButton_Transition_Triangle.IsChecked = True
+                        End Select
+                        If StackPanel_Tuile.IsVisible Then
+                            For Tuile As Integer = 0 To 2
+                                Select Case Tuile
+                                    Case 0
+                                        Me.RadioButton_Tuile_Carré.IsChecked = True
+                                    Case 1
+                                        Me.RadioButton_Tuile_Circulaire.IsChecked = True
+                                    Case 2
+                                        Me.RadioButton_Tuile_Combinée.IsChecked = True
+                                End Select
+
+                                Module_Runtime.Runtime(Me)
+                            Next
+                        Else
+                            Module_Runtime.Runtime(Me)
+                        End If
+                    Next
+                Next
+            Next
+        Next
     End Sub
 End Class
 

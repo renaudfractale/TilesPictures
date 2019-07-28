@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_images"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     
     <StackPanel>
         <TextBlock HorizontalAlignment="Center">Selection du repertoire</TextBlock>
@@ -124,7 +124,7 @@
 
 
         <Button Name="Button_GenerateOnePicture" Click="Button_GenerateOnePicture_Click">Generate One Picture</Button>
-            <Button Name="Button_GenerateAllPictures" >Generate All Pictures</Button>
+            <Button Name="Button_GenerateAllPictures" Click="Button_GenerateAllPictures_Click" >Generate All Pictures</Button>
         </StackPanel>
     </StackPanel>
 </Controls:MetroWindow>
