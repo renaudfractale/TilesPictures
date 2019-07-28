@@ -1,0 +1,430 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css" media="screen">
+    #paper {
+        width:14.5cm;
+        padding-top:3.5cm;
+        padding-bottom:2.5cm;
+        padding-left:4cm;
+        padding-right:2.5cm;
+        background:white;
+        text-align:left;
+    }
+    #paper[dir=rtl] {
+        text-align:right;
+    }
+    #background {
+        padding: 1cm 2cm;
+    }
+</style>
+
+<style type="text/css"  media="print">
+    #paper {
+        padding-left:2cm;
+        padding-right:2.5cm;
+        background:white;
+        unicode-bidi:bidi-override;
+        text-align:left;
+    }
+    #paper [dir=rtl] {
+        text-align:right;
+        direction:rtl;
+    }
+</style>
+
+<style type="text/css">
+    p {
+}
+.dgo_text_container * {
+	padding: 0px;
+	margin: 0px;
+}
+
+.dgo_text_container   {
+	font-family: 'Arial', 'sans-serif';
+	color: 0;
+	font-size: 13px;
+}
+
+.dgo_text_container blockquote {
+	margin: 0px 40px 0px 0px;
+}
+
+.dgo_text_container P {
+}
+
+.dgo_text_container P.arrow {
+}
+
+.dgo_text_container P.branch_header {
+	font-weight: bold;
+}
+
+.dgo_text_container P.bubble_text {
+}
+
+.dgo_text_container P.bubble_text_center {
+	text-align: center;
+}
+
+.dgo_text_container P.center {
+	text-align: center;
+}
+
+.dgo_text_container P.description {
+}
+
+.dgo_text_container P.hint_box {
+}
+
+.dgo_text_container P.right {
+}
+
+[dir=ltr].dgo_text_container P.right,
+[dir=ltr] .dgo_text_container P.right {
+	text-align: right;
+}
+
+[dir=rtl].dgo_text_container P.right,
+[dir=rtl] .dgo_text_container P.right {
+	text-align: left;
+}
+
+.dgo_text_container P.right[dir=ltr] {
+	text-align: right;
+}
+
+.dgo_text_container P.right[dir=rtl] {
+	text-align: left;
+}
+
+.dgo_text_container P.screenshot {
+}
+
+.dgo_text_container P.tcode {
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.dgo_text_container P.title {
+	font-size: 24pt;
+	font-weight: bold;
+}
+
+.dgo_text_container H1 {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.dgo_text_container H2 {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.dgo_text_container H3 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.dgo_text_container H4 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.dgo_text_container H5 {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.dgo_text_container H6 {
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.dgo_text_container ul {
+	margin: 0px;
+	list-style-type: disc;
+}
+
+[dir=ltr].dgo_text_container ul,
+[dir=ltr] .dgo_text_container ul {
+	padding-left: 40px;
+}
+
+[dir=rtl].dgo_text_container ul,
+[dir=rtl] .dgo_text_container ul {
+	padding-right: 40px;
+}
+
+.dgo_text_container ul[dir=ltr] {
+	padding-left: 40px;
+}
+
+.dgo_text_container ul[dir=rtl] {
+	padding-right: 40px;
+}
+
+.dgo_text_container ol {
+	margin: 0px;
+	list-style-type: decimal;
+}
+
+[dir=ltr].dgo_text_container ol,
+[dir=ltr] .dgo_text_container ol {
+	padding-left: 40px;
+}
+
+[dir=rtl].dgo_text_container ol,
+[dir=rtl] .dgo_text_container ol {
+	padding-right: 40px;
+}
+
+.dgo_text_container ol[dir=ltr] {
+	padding-left: 40px;
+}
+
+.dgo_text_container ol[dir=rtl] {
+	padding-right: 40px;
+}
+
+.dgo_text_container ol.ol_upper_alpha {
+	margin: 0px;
+	list-style-type: upper-alpha;
+}
+
+[dir=ltr].dgo_text_container ol.ol_upper_alpha,
+[dir=ltr] .dgo_text_container ol.ol_upper_alpha {
+	padding-left: 40px;
+}
+
+[dir=rtl].dgo_text_container ol.ol_upper_alpha,
+[dir=rtl] .dgo_text_container ol.ol_upper_alpha {
+	padding-right: 40px;
+}
+
+.dgo_text_container ol.ol_upper_alpha[dir=ltr] {
+	padding-left: 40px;
+}
+
+.dgo_text_container ol.ol_upper_alpha[dir=rtl] {
+	padding-right: 40px;
+}
+
+.dgo_text_container SPAN.gloss_ref {
+	border-bottom: 1px dotted; *border-bottom: none; *text-decoration:underline; /*IE7 fix*/
+}
+
+.dgo_text_container SPAN.span_italic {
+	font-style: italic;
+}
+
+.dgo_text_container SPAN.dgo_searchterm {
+	background-color: #FFFF4C;
+}
+
+.dgo_text_container SPAN.span_bold {
+	font-weight: bold;
+}
+
+.dgo_text_container SPAN.span_underline {
+	text-decoration:underline;
+}
+
+.dgo_text_container div.InfoBox {
+	background-color: #FFE19C;
+	border-width: 2px;
+	border-color: #8A7854;
+	border-style: solid;
+	padding: 12px;
+}
+
+.dgo_text_container table.BorderTable {
+	font-family: 'Arial', 'sans-serif';
+	color: 0;
+	background-color: transparent;
+	font-size: 13px;
+	border-width: 1px;
+	border-color: #808080;
+	border-style: solid;
+	border-collapse: collapse;
+}.dgo_text_container table.BorderTable th {
+	border-color: #808080;
+	background-color: #F2F2F2;
+	border-width: 1px;
+	border-style: solid;
+	padding: 10px;
+}.dgo_text_container table.BorderTable td {
+	border-width: 1px;
+	border-color: #808080;
+	border-style: solid;
+	padding: 10px;
+}
+
+.dgo_text_container table.BorderlessTable {
+	font-family: 'Arial', 'sans-serif';
+	color: 0;
+	background-color: transparent;
+	font-size: 13px;
+	border-color: #808080;
+}.dgo_text_container table.BorderlessTable th {
+	border-color: #808080;
+	background-color: transparent;
+	padding: 10px;
+}.dgo_text_container table.BorderlessTable td {
+	border-color: #808080;
+	padding: 10px;
+}
+
+.dgo_text_container a {
+	color: #316598;
+}
+
+.dgo_text_container a:focused {
+	color: #316598;
+}
+
+.dgo_text_container a:hover {
+	color: #FF7800;
+}
+
+.dgo_text_container a:visited {
+	color: #316598;
+}
+</style>
+
+<style type="text/css">
+.dgo_text_container H1,
+{
+	margin-top: 18pt;
+	margin-bottom: 6pt;
+}
+.dgo_text_container H2 {
+	margin-top: 12pt;
+	margin-bottom: 3pt;
+}
+.dgo_text_container H3 {
+	margin-top: 12pt;
+	margin-bottom: 3pt;
+}
+.dgo_text_container H4 {
+	margin-top: 10pt;
+	margin-bottom: 2pt;
+}
+.dgo_text_container H5 {
+	margin-top: 10pt;
+	margin-bottom: 2pt;
+}
+.dgo_text_container H6 {
+	margin-top: 8pt;
+}
+
+.TOCEntry_1 {
+    font-weight:bold;
+    font-size: 14;
+    margin-bottom: 1;
+}
+.TOCEntry_2 {
+    font-weight:bold;
+    font-size: 12;
+    margin-bottom: 1;
+}
+.TOCEntry_3,
+.TOCEntry_4,
+.TOCEntry_5,
+.TOCEntry_6
+{
+    font-size: 11;
+}
+
+</style>
+
+
+</head>
+<body dir=ltr style="background:gray;border:0px;margin:0px;padding:0px" class="dgo_text_container">
+    <div dir=ltr id="background">
+        <center>
+            <div dir=ltr id="paper">
+<a name="TE_1"></a><h2>1.1.  TilesPictures</h2>
+<p class="space1"></p>
+<p class="space1"></p>
+<p> </p>
+<p class="TOCEntry_1"><a href="#TE_1">1.1.  TilesPictures</a></p>
+<p class="TOCEntry_2"><a href="#TE_2">1.1.1.  MainWindow</a></p>
+<p class="TOCEntry_2"><a href="#TE_3">1.1.2.  Rechercher un dossier</a></p>
+<p class="TOCEntry_2"><a href="#TE_4">1.1.3.  Rechercher un dossier</a></p>
+<p class="TOCEntry_2"><a href="#TE_5">1.1.4.  Rechercher un dossier</a></p>
+<p class="TOCEntry_2"><a href="#TE_6">1.1.5.  Rechercher un dossier</a></p>
+<p class="TOCEntry_2"><a href="#TE_7">1.1.6.  Rechercher un dossier</a></p>
+<p class="TOCEntry_2"><a href="#TE_8">1.1.7.  MainWindow</a></p>
+<p class="TOCEntry_2"><a href="#TE_9">1.1.8.  MainWindow</a></p>
+<p class="TOCEntry_2"><a href="#TE_10">1.1.9.  MainWindow</a></p>
+<p class="TOCEntry_2"><a href="#TE_11">1.1.10.  MainWindow</a></p>
+<p class="TOCEntry_2"><a href="#TE_12">1.1.11.  MainWindow</a></p>
+<p class="TOCEntry_2"><a href="#TE_13">1.1.12.  MainWindow</a></p>
+<p> </p>
+<br/><hr/><a name="TE_2"></a><h3><a name="TS_6796840351734F12A456990C2454C3F3"></a>1.1.1.  MainWindow</h3>
+<p class="Screenshot"><img src="standard_files/img_0.png" alt="MainWindow" border="0"/></p>
+<p>1.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold"><img src="standard_files/fieldicon0000.png" border="0"/></span>.</p>
+<a name="TE_3"></a><h3><a name="TS_8AAD7BB12F7A41849170664FBEE1C06A"></a>1.1.2.  Rechercher un dossier</h3>
+<p class="Screenshot"><img src="standard_files/img_000.png" alt="Rechercher un dossier" border="0"/></p>
+<p>2.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold">Bibliothèques</span>.</p>
+<a name="TE_4"></a><h3><a name="TS_88F9D4D6A9764F649F783A9F26054928"></a>1.1.3.  Rechercher un dossier</h3>
+<p class="Screenshot"><img src="standard_files/img_001.png" alt="Rechercher un dossier" border="0"/></p>
+<p>3.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold">Images</span>.</p>
+<a name="TE_5"></a><h3><a name="TS_4FB05AC664764CAF82FA95F53F89903C"></a>1.1.4.  Rechercher un dossier</h3>
+<p class="Screenshot"><img src="standard_files/img_002.png" alt="Rechercher un dossier" border="0"/></p>
+<p>4.&nbsp;À l'aide de la molette de la souris, faire défiler vers le bas pour afficher la zone d'écran souhaitée.</p>
+<a name="TE_6"></a><h3><a name="TS_18B507D7A0954652AE4746A39A9D0120"></a>1.1.5.  Rechercher un dossier</h3>
+<p class="Screenshot"><img src="standard_files/img_003.png" alt="Rechercher un dossier" border="0"/></p>
+<p>5.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold">test3&nbsp;<img src="standard_files/fieldicon.png" border="0"/></span>.</p>
+<a name="TE_7"></a><h3><a name="TS_D6AFCA563A54437388BC82111DA88E96"></a>1.1.6.  Rechercher un dossier</h3>
+<p class="Screenshot"><img src="standard_files/img_004.png" alt="Rechercher un dossier" border="0"/></p>
+<p>6.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold"><img src="standard_files/fieldicon00.png" border="0"/></span>.</p>
+<a name="TE_8"></a><h3><a name="TS_AC05A4FA371741B189F25785EBBBCC7D"></a>1.1.7.  MainWindow</h3>
+<p class="Screenshot"><img src="standard_files/img_005.png" alt="MainWindow" border="0"/></p>
+<p>7.&nbsp; Saisir, pour cet exemple, <span style="font-weight:bold">teste</span> dans le champ <span style="font-weight:bold"></span>.</p>
+<a name="TE_9"></a><h3><a name="TS_80F6CEAAE92A42FDA38C745225F97CAA"></a>1.1.8.  MainWindow</h3>
+<p class="Screenshot"><img src="standard_files/img_006.png" alt="MainWindow" border="0"/></p>
+<p>8.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold">A--&gt;Z</span>.</p>
+<a name="TE_10"></a><h3><a name="TS_A07B61F410694E838B01460C1A7E4876"></a>1.1.9.  MainWindow</h3>
+<p class="Screenshot"><img src="standard_files/img_007.png" alt="MainWindow" border="0"/></p>
+<p>9.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold"><img src="standard_files/fieldicon01.png" border="0"/></span>.</p>
+<a name="TE_11"></a><h3><a name="TS_8C97860A04AC4266810A42CD0E685B4E"></a>1.1.10.  MainWindow</h3>
+<p class="Screenshot"><img src="standard_files/img_008.png" alt="MainWindow" border="0"/></p>
+<p>10.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold">Sinus</span>.</p>
+<a name="TE_12"></a><h3><a name="TS_9FDB0A8CB2314AEB897EF2DEFBC8EDEB"></a>1.1.11.  MainWindow</h3>
+<p class="Screenshot"><img src="standard_files/img_009.png" alt="MainWindow" border="0"/></p>
+<p>11.&nbsp;Cliquer, pour cet exemple, sur <span style="font-weight:bold"><img src="standard_files/fieldicon000000.png" border="0"/></span>.</p>
+<a name="TE_13"></a><h3><a name="TS_6713F784092A472BB8E49DFAA7B4CBD6"></a>1.1.12.  MainWindow</h3>
+<p class="Screenshot"><img src="standard_files/img_010.png" alt="MainWindow" border="0"/></p>
+<p> </p>
+<br/><hr/><p> </p>
+<p></p>
+
+<table class="input_table1" style="border:2.000000px" cellspacing="0" cellpadding="0" border="1.000000"><tr class="input_row1">
+<td class="cell_fieldname1" bgcolor="#E0E0E0" style="padding-left:2.000000px; padding-top:2.000000px; padding-right:2.000000px; padding-bottom:2.000000px; background-color:14737632; width:112.500000pt; "><p class="Table_Heading">Nom de champ</p>
+</td>
+<td class="cell_value1" bgcolor="#E0E0E0" style="padding-left:2.000000px; padding-top:2.000000px; padding-right:2.000000px; padding-bottom:2.000000px; background-color:14737632; width:112.500000pt; "><p class="Table_Heading">Valeur</p>
+</td>
+<td class="cell_description1" bgcolor="#E0E0E0" style="padding-left:2.000000px; padding-top:2.000000px; padding-right:2.000000px; padding-bottom:2.000000px; background-color:14737632; width:225.000000pt; "><p class="Table_Heading">Description</p>
+</td></tr>
+<tr class="input_row1">
+<td class="cell_fieldname1" bgcolor="#FFFFFF" style="padding-left:2.000000px; padding-top:2.000000px; padding-right:2.000000px; padding-bottom:2.000000px; background-color:16777215; width:112.500000pt; "><p></p>
+</td>
+<td class="cell_value1" bgcolor="#FFFFFF" style="padding-left:2.000000px; padding-top:2.000000px; padding-right:2.000000px; padding-bottom:2.000000px; background-color:16777215; width:112.500000pt; "><p> teste&nbsp;</p>
+</td>
+<td class="cell_description1" bgcolor="#FFFFFF" style="padding-left:2.000000px; padding-top:2.000000px; padding-right:2.000000px; padding-bottom:2.000000px; background-color:16777215; width:225.000000pt; "><p></p>
+</td></tr>
+</table>
+<p> </p>
+
+            </div>
+        </center>
+    </div>
+</body>
+</html>
+

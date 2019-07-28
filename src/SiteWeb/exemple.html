@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>TilesPictures - Exemples</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">TilesPictures</a>
+      <ul class="right hide-on-med-and-down">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Instal.html">Installateur</a></li>
+          <li><a href="exemple.html">Exemples</a></li>
+          <li><a href="Help.html">Aide</a></li>
+          <li><a href="About.html">A Propos</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Instal.html">Installateur</a></li>
+          <li><a href="exemple.html">Exemples</a></li>
+          <li><a href="Help.html">Aide</a></li>
+          <li><a href="About.html">A Propos</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Exemples</h1>
+    </div>
+  </div>
+    <div class="container">
+    <div class="section">
+ <form action="#">
+      <div class="row center">
+        <h5 class="header col s12 light">Options : </h5>
+      </div>
+      <div class="row">
+        <div class="col l2 s12">   
+         
+            <p>
+              <label>
+                <input name="Paramters" type="radio" checked ID="Paramters_AZ" onclick="Affiche();"/>
+                <span>A-->Z</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Paramters" type="radio"  ID="Paramters_ZA" onclick="Affiche();"/>
+                <span>Z-->A</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Paramters" type="radio"  ID="Paramters_Rdm" onclick="Affiche();"/>
+                <span>Random</span>
+              </label>
+            </p>
+
+
+        
+        </div>
+  
+        <div class="col l2 s12">   
+          <p>
+              <label>
+                <input name="Repetition" type="radio" checked ID="Repetition_None" onclick="Affiche();"/>
+                <span>None</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Repetition" type="radio"  ID="Repetition_Miroir" onclick="Affiche();"/>
+                <span>Miroir</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Repetition" type="radio"  ID="Repetition_Serie" onclick="Affiche();"/>
+                <span>Serie</span>
+              </label>
+            </p>
+</div> 
+        <div class="col l2 s12">   
+          <p>
+              <label>
+                <input name="Alignement" type="radio" checked ID="Alignement_H" onclick="Affiche();"/>
+                <span>Horizontal</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Alignement" type="radio"  ID="Alignement_V" onclick="Affiche();"/>
+                <span>Vertical</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Alignement" type="radio"  ID="Alignement_D1" onclick="Affiche();"/>
+                <span>Diagonal 1</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Alignement" type="radio"  ID="Alignement_D2" onclick="Affiche();"/>
+                <span>Diagonal 2</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Alignement" type="radio"  ID="Alignement_C" onclick="Affiche();"/>
+                <span>Centre</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Alignement" type="radio"  ID="Alignement_Rdm" onclick="Affiche();"/>
+                <span>Random</span>
+              </label>
+            </p>
+</div> 
+        <div class="col l2 s12">   
+          <p>
+              <label>
+                <input name="Transition" type="radio" checked ID="Transition_Sinus" onclick="Affiche();"/>
+                <span>Sinus</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Transition" type="radio"  ID="Transition_Tri" onclick="Affiche();"/>
+                <span>Triangle</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Transition" type="radio"  ID="Transition_Carre" onclick="Affiche();"/>
+                <span>Carré</span>
+              </label>
+            </p>
+</div> 
+        <div class="col l3 s12" ID="div_tuile">   
+          <p>
+              <label>
+                <input name="Tuile" type="radio" checked ID="Tuile_Carre" onclick="Affiche();"/>
+                <span>Carre</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Tuile" type="radio"  ID="Tuile_Cir" onclick="Affiche();"/>
+                <span>Circulaire</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="Tuile" type="radio"  ID="Tuile_Combine" onclick="Affiche();"/>
+                <span>Combiné</span>
+              </label>
+            </p>
+</div> 
+      </div>
+        </form>
+</div>
+</div>
+
+    
+
+    <div class="container">
+    <div class="section">
+        <div class="row">
+        <div class="row center">
+        <h5 class="header col s12 light">résultats : </h5>
+      </div>
+        <div class="col s12 m3">   
+            <img ID="img_1">
+        </div>
+        <div class="col s12 m3">   
+            <img ID="img_2">
+        </div>
+        <div class="col s12 m3">   
+            <img ID="img_3">
+        </div>
+        <div class="col s12 m3">   
+            <img ID="img_4">
+        </div>
+        </div>
+    </div>
+    </div>  
+ <script>
+   function Affiche(){
+       var namePath = "/OutFile_0_"
+       // Paramters
+       var Paramters_AZ= document.getElementById("Paramters_AZ")
+       if(Paramters_AZ.checked){
+           namePath=namePath+"AZ_"
+       }
+       var Paramters_ZA= document.getElementById("Paramters_ZA")
+       if(Paramters_ZA.checked){
+           namePath=namePath+"ZA_"
+       }
+       var Paramters_Rdm= document.getElementById("Paramters_Rdm")
+       if(Paramters_Rdm.checked){
+           namePath=namePath+"rndm_"
+       }
+       
+       //Repetition
+       var Repetition_None = document.getElementById("Repetition_None")
+       if(Repetition_None.checked){
+           namePath=namePath+"None_"
+       }
+       var Repetition_Miroir = document.getElementById("Repetition_Miroir")
+       if(Repetition_Miroir.checked){
+           namePath=namePath+"Miroir_"
+       }
+       var Repetition_Serie = document.getElementById("Repetition_Serie")
+       if(Repetition_Serie.checked){
+           namePath=namePath+"Serie_"
+       }
+       
+       //Alignement
+       var Alignement_H = document.getElementById("Alignement_H")
+       if(Alignement_H.checked){
+           namePath=namePath+"H_"
+       }
+       var Alignement_V = document.getElementById("Alignement_V")
+       if(Alignement_V.checked){
+           namePath=namePath+"V_"
+       }
+       var Alignement_D1 = document.getElementById("Alignement_D1")
+       if(Alignement_D1.checked){
+           namePath=namePath+"D1_"
+       }
+       var Alignement_D2 = document.getElementById("Alignement_D2")
+       if(Alignement_D2.checked){
+           namePath=namePath+"D2_"
+       }
+       var Alignement_C = document.getElementById("Alignement_C")
+       if(Alignement_C.checked){
+           namePath=namePath+"C_"
+       }
+       var Alignement_Rdm = document.getElementById("Alignement_Rdm")
+       if(Alignement_Rdm.checked){
+           namePath=namePath+"Rndm_"
+       }
+       
+       //Transition
+       var Transition_Sinus = document.getElementById("Transition_Sinus")
+       if(Transition_Sinus.checked){
+           namePath=namePath+"Sinus_"
+       }
+       var Transition_Carre = document.getElementById("Transition_Carre")
+       if(Transition_Carre.checked){
+           namePath=namePath+"Square_"
+       }
+       var Transition_Tri = document.getElementById("Transition_Tri")
+       if(Transition_Tri.checked){
+           namePath=namePath+"Tri_"
+       }
+       
+       var div_tuile = document.getElementById("div_tuile")
+       if(Alignement_H.checked || Alignement_V.checked ){
+           div_tuile.style.display = "none";
+           namePath=namePath+"None_"
+       }else{
+           div_tuile.style.display = "block";
+           
+           var Tuile_Carre = document.getElementById("Tuile_Carre")
+           if(Tuile_Carre.checked){
+               namePath=namePath+"Square_"
+           }
+           var Tuile_Cir = document.getElementById("Tuile_Cir")
+           if(Tuile_Cir.checked){
+               namePath=namePath+"Cir"
+           }
+           var Tuile_Combine = document.getElementById("Tuile_Combine")
+           if(Tuile_Combine.checked){
+               namePath=namePath+"Comb_"
+           }
+       }
+           
+        namePath=namePath+".jpg" 
+       
+       var img_1 = document.getElementById("img_1")
+       
+       img_1.src="./exemples/1/"+namePath
+       img_1.width="225"
+       
+        var img_2 = document.getElementById("img_2")
+       
+       img_2.src="./exemples/2/"+namePath
+       img_2.width="250"
+       
+        var img_3 = document.getElementById("img_3")
+       
+       img_3.src="./exemples/3/"+namePath
+       img_3.width="250"
+       
+        var img_4 = document.getElementById("img_4")
+       
+       img_4.src="./exemples/4/"+namePath
+       img_4.width="250"
+       //Alert 
+       //alert(namePath)
+   } 
+    
+     window.onload = Affiche();    
+</script>
+ <!--
+
+  <div class="container">
+    <div class="section">
+
+      
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Speeds up development</h5>
+
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">User Experience Focused</h5>
+
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Easy to work with</h5>
+
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+-->
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">Informaticien de profession, je suis passionné par la photo. J’ai créé le site internet les clichés de Renaud afin de partager ma passion et mon travail de photographe et de développement de logiciel photos.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Mes autres sites web</h5>
+          <ul>
+            <li><a class="white-text" href="http://www.lesclichesderenaud.com/">Mon portfolio</a></li>
+            <li><a class="white-text" href="https://renaud-henry.me/">Mon hub professionnel</a></li>
+            <li><a class="white-text" href="https://wiki.renaud-henry.me/index.php?title=Accueil">Mon Wiki axé sur les fractales</a></li>
+            <li><a class="white-text" href="https://cvpro.renaud-henry.me/">Mon CV (non mise à jour)</a></li>
+            <li><a class="white-text" href="https://visite.renaud-henry.me/maulevrier/index.html">Une visite virtuelle du parc Oriental de Maulevrier</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="https://www.linkedin.com/in/renaud-henry/">linkedin</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/LesClichesDeRenaud/">facebook</a></li>
+            <li><a class="white-text" href="https://www.instagram.com/lesclichesderenaud/">instagram</a></li>
+            <li><a class="white-text" href="https://github.com/renaudfractale">github </a></li>
+            <li><a class="white-text" href="https://www.flickr.com/photos/92489783@N06/">flickr </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+ <div class="footer-copyright">
+      <div class="container">
+      <!--   Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
+      </div>
+</div>
+  
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
