@@ -45,8 +45,133 @@
 
     </div>
   </div>
-
-
+    <div class="container">
+    <div class="section">
+        <div class="row">
+        <div class="row center">
+        <h5 class="header col s12 light">Résultats : (nouvelle image toutes 5 secondes)</h5>
+      </div>
+        <div class="col s12 m3">   
+            <img ID="img_1">
+        </div>
+        <div class="col s12 m3">   
+            <img ID="img_2">
+        </div>
+        <div class="col s12 m3">   
+            <img ID="img_3">
+        </div>
+        <div class="col s12 m3">   
+            <img ID="img_4">
+        </div>
+        </div>
+    </div>
+    </div>
+ <script>
+     function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+     
+   function Affiche(){
+       var namePath = "/OutFile_0_"
+       // Paramters
+       var Parameter = getRandomInt(3)
+       if(Parameter==0){
+           namePath=namePath+"AZ_"
+       }
+      if(Parameter==1){
+           namePath=namePath+"ZA_"
+       }
+       if(Parameter==2){
+           namePath=namePath+"rndm_"
+       }
+       
+       //Repetition
+       var Repetition = getRandomInt(3)
+       if(Repetition==0){
+           namePath=namePath+"None_"
+       }
+       if(Repetition==1){
+           namePath=namePath+"Miroir_"
+       }
+       if(Repetition==2){
+           namePath=namePath+"Serie_"
+       }
+       
+       //Alignement
+       var Alignement =  getRandomInt(6)
+       if(Alignement==0){
+           namePath=namePath+"H_"
+       }
+       if(Alignement==1){
+           namePath=namePath+"V_"
+       }
+       if(Alignement==2){
+           namePath=namePath+"D1_"
+       }
+       if(Alignement==3){
+           namePath=namePath+"D2_"
+       }
+       if(Alignement==4){
+           namePath=namePath+"C_"
+       }
+       if(Alignement==5){
+           namePath=namePath+"Rndm_"
+       }
+       
+       //Transition
+       var Transition = getRandomInt(3)
+       if(Transition==0){
+           namePath=namePath+"Sinus_"
+       }
+       if(Transition==1){
+           namePath=namePath+"Square_"
+       }
+       if(Transition==2){
+           namePath=namePath+"Tri_"
+       }
+       
+       if(Alignement==0 || Alignement==1){
+           namePath=namePath+"None_"
+       }else{
+           var Tuile = getRandomInt(3)
+           if(Tuile==0){
+               namePath=namePath+"Square_"
+           }
+           if(Tuile==1){
+               namePath=namePath+"Cir"
+           }
+           if(Tuile==2){
+               namePath=namePath+"Comb_"
+           }
+       }
+           
+        namePath=namePath+".jpg" 
+       
+       var img_1 = document.getElementById("img_1")
+       
+       img_1.src="./exemples/1/"+namePath
+       img_1.width="225"
+       
+        var img_2 = document.getElementById("img_2")
+       
+       img_2.src="./exemples/2/"+namePath
+       img_2.width="250"
+       
+        var img_3 = document.getElementById("img_3")
+       
+       img_3.src="./exemples/3/"+namePath
+       img_3.width="250"
+       
+        var img_4 = document.getElementById("img_4")
+       
+       img_4.src="./exemples/4/"+namePath
+       img_4.width="250"
+       //Alert 
+       //alert(namePath)
+   } 
+   window.setInterval(Affiche,5000);
+     window.onload = Affiche();    
+</script>
   <div class="container">
     <div class="section">
 
